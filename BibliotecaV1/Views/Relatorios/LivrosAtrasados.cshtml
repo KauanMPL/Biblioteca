@@ -1,0 +1,27 @@
+﻿@model IEnumerable<BibliotecaV1.Models.Emprestimo>
+
+@{
+    ViewData["Title"] = "Livros Atrasados";
+}
+
+<h2>Livros Atrasados</h2>
+
+<table class="table table-danger">
+    <thead>
+        <tr>
+            <th>Usuário</th>
+            <th>Livro</th>
+            <th>Devolução Prevista</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Usuario?.NomeCompleto</td>
+                <td>@item.Livro?.NomeLivro</td>
+                <td>@item.DataPrevistaDevolucao.ToString("dd/MM/yyyy")</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,78 @@
+﻿@model BibliotecaV1.Models.Emprestimo
+
+@{
+    ViewData["Title"] = "Novo Empréstimo";
+}
+
+<h2>📚 Novo Empréstimo</h2>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+
+        <form asp-action="Create">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="mb-3">
+                <label asp-for="UsuarioId" class="form-label">
+                    Usuário
+                </label>
+
+                <select asp-for="UsuarioId"
+                        class="form-select"
+                        asp-items="ViewBag.UsuarioId">
+                    <option value="">Selecione um usuário</option>
+                </select>
+
+                <span asp-validation-for="UsuarioId" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="LivroId" class="form-label">
+                    Livro
+                </label>
+
+                <select asp-for="LivroId"
+                        class="form-select"
+                        asp-items="ViewBag.LivroId">
+                    <option value="">Selecione um livro</option>
+                </select>
+
+                <span asp-validation-for="LivroId" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="DataPrevistaDevolucao" class="form-label">
+                    Data Prevista de Devolução
+                </label>
+
+                <input asp-for="DataPrevistaDevolucao"
+                       type="date"
+                       class="form-control" />
+
+                <span asp-validation-for="DataPrevistaDevolucao"
+                      class="text-danger"></span>
+            </div>
+
+            <button type="submit"
+                    class="btn btn-success">
+                Registrar Empréstimo
+            </button>
+
+            <a asp-action="Index"
+                   class="btn btn-secondary">
+                Voltar
+            </a>
+
+        </form>
+
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,78 @@
+﻿@model BibliotecaV1.Models.Usuario
+
+@{
+    ViewData["Title"] = "Cadastrar Usuário";
+}
+
+<div class="container mt-4">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h3>Cadastrar Usuário</h3>
+        </div>
+
+        <div class="card-body">
+
+            <form asp-action="Create">
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="mb-3">
+                    <label asp-for="NomeCompleto" class="form-label"></label>
+                    <input asp-for="NomeCompleto" class="form-control" />
+                    <span asp-validation-for="NomeCompleto" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="DataNascimento" class="form-label"></label>
+                    <input asp-for="DataNascimento"
+                           type="date"
+                           class="form-control" />
+                    <span asp-validation-for="DataNascimento" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label"></label>
+                    <input asp-for="Email"
+                           type="email"
+                           class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Senha" class="form-label"></label>
+                    <input asp-for="Senha"
+                           type="password"
+                           class="form-control" />
+                    <span asp-validation-for="Senha" class="text-danger"></span>
+                </div>
+
+                <div class="form-check mb-3">
+                    <input asp-for="Ativo"
+                           class="form-check-input" />
+
+                    <label asp-for="Ativo"
+                           class="form-check-label">
+                        Usuário Ativo
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-success">
+                    Salvar
+                </button>
+
+                <a asp-action="Index"
+                       class="btn btn-secondary">
+                    Voltar
+                </a>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

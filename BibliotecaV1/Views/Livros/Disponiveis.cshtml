@@ -1,0 +1,38 @@
+﻿@model IEnumerable<BibliotecaV1.Models.Livro>
+
+@{
+    ViewData["Title"] = "Livros Disponíveis";
+}
+
+<h2>📚 Livros Disponíveis</h2>
+
+<table class="table table-striped">
+
+    <thead>
+        <tr>
+            <th>Livro</th>
+            <th>Autor</th>
+            <th>Categoria</th>
+            <th>Estoque</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var livro in Model)
+        {
+            <tr>
+                <td>@livro.NomeLivro</td>
+                <td>@livro.Autor</td>
+                <td>@livro.Categoria</td>
+                <td>
+                    <span class="badge bg-success">
+                        @livro.QuantidadeEstoque
+                    </span>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>

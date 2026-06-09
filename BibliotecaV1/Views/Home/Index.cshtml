@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<h2>📊 Dashboard</h2>
+
+<div class="row">
+
+    <div class="col-md-3">
+        <div class="card text-center border-primary mb-3">
+            <div class="card-body">
+                <h3>@ViewBag.TotalUsuarios</h3>
+                <p>Usuários</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card text-center border-success mb-3">
+            <div class="card-body">
+                <h3>@ViewBag.TotalLivros</h3>
+                <p>Livros</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card text-center border-warning mb-3">
+            <div class="card-body">
+                <h3>@ViewBag.EmprestimosAtivos</h3>
+                <p>Emprestados</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card text-center border-danger mb-3">
+            <div class="card-body">
+                <h3>@ViewBag.Atrasados</h3>
+                <p>Atrasados</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h4>
+            💰 Total em Multas:
+            @ViewBag.TotalMultas.ToString("C")
+        </h4>
+    </div>
+</div>

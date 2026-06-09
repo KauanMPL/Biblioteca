@@ -1,0 +1,199 @@
+﻿@model IEnumerable<BibliotecaV1.ViewModels.RelatorioEmprestimoViewModel>
+
+@using System.Text.Json
+
+@{
+    ViewData["Title"] = "Dashboard";
+
+    var categorias = JsonSerializer.Serialize(
+        ((IEnumerable<dynamic>)ViewBag.Categorias)
+        .Select(x => x.Categoria)
+    );
+
+    var quantidades = JsonSerializer.Serialize(
+        ((IEnumerable<dynamic>)ViewBag.Categorias)
+        .Select(x => x.Quantidade)
+    );
+
+    var meses = JsonSerializer.Serialize(
+        ((IEnumerable<dynamic>)ViewBag.EmprestimosMes)
+        .Select(x =>
+            System.Globalization.CultureInfo
+            .GetCultureInfo("pt-BR")
+            .DateTimeFormat
+            .GetAbbreviatedMonthName((int)x.Mes))
+    );
+
+    var totais = JsonSerializer.Serialize(
+        ((IEnumerable<dynamic>)ViewBag.EmprestimosMes)
+        .Select(x => x.Total)
+    );
+}
+
+<h2 class="mb-4">📊 Dashboard da Biblioteca</h2>
+
+<div class="row mb-4">
+
+    <div class="col-md-3">
+        <div class="card bg-primary text-white">
+            <div class="card-body">
+                <h5>Total de Livros</h5>
+                <h2>@ViewBag.TotalLivros</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card bg-success text-white">
+            <div class="card-body">
+                <h5>Usuários</h5>
+                <h2>@ViewBag.TotalUsuarios</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card bg-warning text-dark">
+            <div class="card-body">
+                <h5>Empréstimos Ativos</h5>
+                <h2>@ViewBag.EmprestimosAtivos</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card bg-danger text-white">
+            <div class="card-body">
+                <h5>Multas</h5>
+                <h2>R$ @ViewBag.TotalMultas</h2>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-md-6">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                Livros por Categoria
+            </div>
+
+            <div class="card-body">
+                <canvas id="graficoPizza"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card shadow">
+            <div class="card-header bg-success text-white">
+                Empréstimos por Mês
+            </div>
+
+            <div class="card-body">
+                <canvas id="graficoLinha"></canvas>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<hr class="my-4" />
+
+<h3>📚 Histórico de Empréstimos</h3>
+
+<table class="table table-striped table-hover">
+
+    <thead class="table-dark">
+        <tr>
+            <th>Usuário</th>
+            <th>Livro</th>
+            <th>Empréstimo</th>
+            <th>Devolução</th>
+            <th>Multa</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>@item.Usuario</td>
+
+                <td>@item.Livro</td>
+
+                <td>
+                    @item.DataEmprestimo.ToString("dd/MM/yyyy")
+                </td>
+
+                <td>
+                    @(item.DataDevolucao?.ToString("dd/MM/yyyy") ?? "-")
+                </td>
+
+                <td>
+                    @item.Multa.ToString("C")
+                </td>
+
+                <td>
+                    @item.Status
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+
+@section Scripts {
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+
+        const categorias = @Html.Raw(categorias);
+        const quantidades = @Html.Raw(quantidades);
+
+        new Chart(document.getElementById('graficoPizza'), {
+
+        type: 'pie',
+
+        data: {
+
+        labels: categorias,
+
+        datasets: [{
+        data: quantidades
+        }]
+        }
+        });
+
+
+        const meses = @Html.Raw(meses);
+        const totais = @Html.Raw(totais);
+
+        new Chart(document.getElementById('graficoLinha'), {
+
+        type: 'line',
+
+        data: {
+
+        labels: meses,
+
+        datasets: [{
+        label: 'Empréstimos',
+        data: totais,
+        fill: false,
+        tension: 0.4
+        }]
+        }
+        });
+
+    </script>
+
+}

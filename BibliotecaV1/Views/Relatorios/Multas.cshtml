@@ -1,0 +1,27 @@
+﻿@model IEnumerable<BibliotecaV1.Models.Emprestimo>
+
+@{
+    ViewData["Title"] = "Multas";
+}
+
+<h2>Multas Aplicadas</h2>
+
+<table class="table table-warning">
+    <thead>
+        <tr>
+            <th>Usuário</th>
+            <th>Livro</th>
+            <th>Multa</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Usuario?.NomeCompleto</td>
+                <td>@item.Livro?.NomeLivro</td>
+                <td>R$ @item.Multa</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,110 @@
+﻿@using Microsoft.AspNetCore.Http
+
+@{
+    var title = ViewData["Title"] ?? "Biblioteca";
+
+    var usuarioId = Context.Session.GetInt32("UsuarioId");
+    var usuarioNome = Context.Session.GetString("UsuarioNome");
+}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>@title - Biblioteca</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+
+    @if (usuarioId != null)
+    {
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+
+                <a class="navbar-brand"
+                       asp-controller="Home"
+                       asp-action="Index">
+                    📚 Biblioteca
+                </a>
+
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+
+                    <ul class="navbar-nav me-auto">
+
+                        <li class="nav-item">
+                            <a class="nav-link"
+                                   asp-controller="Usuarios"
+                                   asp-action="Index">
+                                <i class="bi bi-people"></i>
+                                Usuários
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link"
+                                   asp-controller="Livros"
+                                   asp-action="Index">
+                                <i class="bi bi-book"></i>
+                                Livros
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link"
+                                   asp-controller="Emprestimoes"
+                                   asp-action="Index">
+                                <i class="bi bi-journal-arrow-up"></i>
+                                Empréstimos
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link"
+                                   asp-controller="Relatorios"
+                                   asp-action="Historico">
+                                <i class="bi bi-graph-up"></i>
+                                Relatórios
+                            </a>
+                        </li>
+
+                    </ul>
+
+                    <span class="text-light me-3">
+                        <i class="bi bi-person-circle"></i>
+                        @usuarioNome
+                    </span>
+
+                    <a asp-controller="Login"
+                           asp-action="Logout"
+                           class="btn btn-outline-light">
+                        Sair
+                    </a>
+
+                </div>
+            </div>
+        </nav>
+    }
+
+    <div class="container mt-4">
+        @RenderBody()
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>
