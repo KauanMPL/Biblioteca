@@ -1,60 +1,175 @@
 ﻿@model BibliotecaV1.Models.Emprestimo
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalhes do Empréstimo";
 }
 
-<h1>Details</h1>
+<div class="neon-card">
 
-<div>
-    <h4>Emprestimo</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DataEmprestimo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DataEmprestimo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Usuario)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Usuario.Email)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Livro)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Livro.Autor)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DataPrevistaDevolucao)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DataPrevistaDevolucao)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DataRealDevolucao)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DataRealDevolucao)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Multa)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Multa)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-    </dl>
+    <h2 class="neon-title">
+        <i class="bi bi-journal-text"></i>
+        Detalhes do Empréstimo
+    </h2>
+
+    <div class="info-box">
+
+        <div class="info-item">
+            <span class="label">Usuário</span>
+            <span class="value">
+                @Model.Usuario?.NomeCompleto
+            </span>
+        </div>
+
+        <div class="info-item">
+            <span class="label">Livro</span>
+            <span class="value">
+                @Model.Livro?.NomeLivro
+            </span>
+        </div>
+
+        <div class="info-item">
+            <span class="label">Autor</span>
+            <span class="value">
+                @Model.Livro?.Autor
+            </span>
+        </div>
+
+        <div class="info-item">
+            <span class="label">Data Empréstimo</span>
+            <span class="value">
+                @Model.DataEmprestimo.ToString("dd/MM/yyyy")
+            </span>
+        </div>
+
+        <div class="info-item">
+            <span class="label">Devolução Prevista</span>
+            <span class="value">
+                @Model.DataPrevistaDevolucao.ToString("dd/MM/yyyy")
+            </span>
+        </div>
+
+        <div class="info-item">
+            <span class="label">Data Devolução</span>
+            <span class="value">
+                @(Model.DataRealDevolucao?.ToString("dd/MM/yyyy") ?? "Não devolvido")
+            </span>
+        </div>
+
+        <div class="info-item">
+            <span class="label">Multa</span>
+            <span class="value text-warning">
+                @Model.Multa.ToString("C")
+            </span>
+        </div>
+
+        <div class="info-item">
+            <span class="label">Status</span>
+
+            @if (Model.Status == "Emprestado")
+            {
+                <span class="badge bg-primary">
+                    Emprestado
+                </span>
+            }
+            else if (Model.Status == "Devolvido")
+            {
+                <span class="badge bg-success">
+                    Devolvido
+                </span>
+            }
+            else
+            {
+                <span class="badge bg-danger">
+                    Atrasado
+                </span>
+            }
+        </div>
+
+    </div>
+
+    <div class="mt-4">
+
+        <a asp-action="Edit"
+           asp-route-id="@Model.Id"
+           class="btn btn-warning neon-btn-warning">
+            <i class="bi bi-pencil-square"></i>
+            Editar
+        </a>
+
+        <a asp-action="Index"
+           class="btn btn-outline-info neon-btn">
+            <i class="bi bi-arrow-left"></i>
+            Voltar
+        </a>
+
+    </div>
+
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
+<style>
+
+.neon-card{
+    background:#111827;
+    border:1px solid #00ffff55;
+    border-radius:20px;
+    padding:30px;
+    box-shadow:0 0 25px #00ffff33;
+}
+
+.neon-title{
+    color:#00ffff;
+    text-shadow:0 0 10px #00ffff;
+    margin-bottom:25px;
+}
+
+.info-box{
+    background:#0f172a;
+    border:1px solid #00ffff33;
+    border-radius:15px;
+    padding:20px;
+}
+
+.info-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:12px 0;
+    border-bottom:1px solid #1e293b;
+}
+
+.info-item:last-child{
+    border-bottom:none;
+}
+
+.label{
+    color:#94a3b8;
+    font-weight:600;
+}
+
+.value{
+    color:white;
+    font-weight:500;
+}
+
+.neon-btn{
+    border:1px solid #00ffff;
+    color:#00ffff;
+}
+
+.neon-btn:hover{
+    background:#00ffff;
+    color:black;
+    box-shadow:0 0 15px #00ffff;
+}
+
+.neon-btn-warning{
+    color:black;
+    box-shadow:0 0 15px #ffc107;
+    margin-right:10px;
+}
+
+.neon-btn-warning:hover{
+    box-shadow:0 0 25px #ffc107;
+}
+
+</style>

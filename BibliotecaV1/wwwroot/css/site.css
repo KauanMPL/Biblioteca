@@ -1,31 +1,245 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
+/* FUNDO GLOBAL */
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background: linear-gradient(135deg,#050816,#0d1326);
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+/* TÍTULOS */
+
+h1, h2, h3, h4, h5 {
+    color: #00ffff;
+    text-shadow: 0 0 10px #00ffff;
+    font-weight: bold;
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+/* CARDS */
+
+.card,
+.neon-card {
+    background: rgba(12,18,40,.95);
+    border: 1px solid #00ffff;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0,255,255,.35);
+}
+
+/* FORMULÁRIOS */
+
+.form-control,
+.form-select {
+    background: #0a1025;
+    color: white;
+    border: 1px solid #00ffff;
+}
+
+    .form-control:focus,
+    .form-select:focus,
+    .form-check-input:focus {
+        background: #0a1025;
+        color: white;
+        border-color: #00ffff;
+        box-shadow: 0 0 15px #00ffff;
+    }
+
+    .form-control::placeholder {
+        color: #9ca3af;
+    }
+
+/* LABELS */
+
+.form-label {
+    color: #00ffff;
+    font-weight: 500;
+}
+
+/* BOTÕES */
+
+.btn-primary,
+.btn-success {
+    background: #00ffff;
+    border: none;
+    color: black;
+    font-weight: bold;
+    transition: .3s;
+}
+
+    .btn-primary:hover,
+    .btn-success:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px #00ffff;
+        color: black;
+    }
+
+.btn-warning {
+    background: #ffb100;
+    border: none;
+    color: black;
+}
+
+    .btn-warning:hover {
+        box-shadow: 0 0 15px #ffb100;
+    }
+
+.btn-danger:hover {
+    box-shadow: 0 0 15px #ff4d4d;
+}
+
+.btn-info:hover {
+    box-shadow: 0 0 15px #00d4ff;
+}
+
+.btn-secondary {
+    border: 1px solid #00ffff;
+    background: transparent;
+    color: #00ffff;
+}
+
+    .btn-secondary:hover {
+        background: #00ffff;
+        color: black;
+    }
+
+/* TABELAS */
+
+.table {
+    color: white;
+}
+
+    .table thead {
+        background: #08142c;
+    }
+
+.table-dark {
+    background: #08142c !important;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0,255,255,.04);
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(0,255,255,.10);
+}
+
+/* BADGES */
+
+.badge.bg-success {
+    background: #00ff88 !important;
+    color: black;
+}
+
+.badge.bg-danger {
+    background: #ff4d4d !important;
+}
+
+/* NAVBAR */
+
+.navbar {
+    background: rgba(0,0,0,.85) !important;
+    border-bottom: 1px solid #00ffff;
+    box-shadow: 0 0 20px rgba(0,255,255,.25);
+}
+
+.navbar-brand {
+    color: #00ffff !important;
+    font-weight: bold;
+    text-shadow: 0 0 10px #00ffff;
+}
+
+.nav-link {
+    color: white !important;
+}
+
+    .nav-link:hover {
+        color: #00ffff !important;
+    }
+
+/* DROPDOWNS */
+
+.dropdown-menu {
+    background: #08142c;
+    border: 1px solid #00ffff;
+}
+
+.dropdown-item {
+    color: white;
+}
+
+    .dropdown-item:hover {
+        background: rgba(0,255,255,.15);
+        color: #00ffff;
+    }
+
+/* LINKS */
+
+a {
+    color: #00ffff;
+}
+
+    a:hover {
+        color: white;
+    }
+
+/* VALIDAÇÕES */
+
+.text-danger {
+    color: #ff5b5b !important;
+}
+
+/* INPUTS FLOATING */
+
+.form-floating > .form-control-plaintext::placeholder,
+.form-floating > .form-control::placeholder {
+    color: #9ca3af;
+    text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder,
+.form-floating > .form-control:focus::placeholder {
+    text-align: start;
+}
+
+/* SCROLLBAR */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #08142c;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #00ffff;
+    border-radius: 10px;
+}
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #00d4ff;
+    }
+
+/* ANIMAÇÃO NEON */
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 10px #00ffff;
+    }
+
+    to {
+        box-shadow: 0 0 25px #00ffff;
+    }
 }
