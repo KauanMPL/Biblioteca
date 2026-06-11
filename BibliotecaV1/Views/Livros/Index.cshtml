@@ -1,39 +1,183 @@
 ﻿@model IEnumerable<BibliotecaV1.Models.Livro>
 
 @{
-    ViewData["Title"] = "Livros";
+ViewData["Title"] = "Livros";
 }
 
-<h2>📚 Livros</h2>
+<style>
+    body {
+        background: #0d1117;
+    }
+
+    .page-title {
+        color: #fff;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+
+    .search-box {
+        background: #161b22;
+        border-radius: 18px;
+        padding: 15px;
+        border: 1px solid #30363d;
+        box-shadow: 0 8px 25px rgba(0,0,0,.25);
+    }
+
+    .form-control {
+        background: #0d1117;
+        color: white;
+        border: 1px solid #30363d;
+    }
+
+    .form-control:focus {
+        background: #0d1117;
+        color: white;
+        border-color: #58a6ff;
+        box-shadow: 0 0 10px rgba(88,166,255,.35);
+    }
+
+    .table-container {
+        background: #161b22;
+        border-radius: 20px;
+        overflow: hidden;
+        border: 1px solid #30363d;
+        box-shadow: 0 10px 35px rgba(0,0,0,.35);
+        margin-top: 20px;
+    }
+
+    .custom-table {
+        margin: 0;
+        color: #e6edf3;
+    }
+
+    .custom-table thead {
+        background: linear-gradient(135deg,#1f2937,#111827);
+    }
+
+    .custom-table thead th {
+        color: #60a5fa;
+        border: none;
+        padding: 18px;
+        font-weight: 600;
+    }
+
+    .custom-table tbody tr {
+        background: #0d1117;
+        transition: .25s;
+    }
+
+    .custom-table tbody tr:hover {
+        background: #1c2128;
+        transform: scale(1.01);
+    }
+
+    .custom-table td {
+        border-color: #30363d;
+        padding: 16px;
+        vertical-align: middle;
+    }
+
+    .badge {
+        border-radius: 12px;
+        padding: 8px 12px;
+    }
+
+    .action-buttons {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    .btn-edit,
+    .btn-details,
+    .btn-delete {
+        border: none;
+        border-radius: 14px;
+        padding: 8px 14px;
+        font-size: .85rem;
+        font-weight: 600;
+        transition: all .25s ease;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        text-decoration: none;
+    }
+
+    .btn-edit {
+        background: linear-gradient(135deg,#f59e0b,#d97706);
+        color: white;
+        box-shadow: 0 4px 15px rgba(245,158,11,.35);
+    }
+
+    .btn-edit:hover {
+        color: white;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(245,158,11,.55);
+    }
+
+    .btn-details {
+        background: linear-gradient(135deg,#3b82f6,#2563eb);
+        color: white;
+        box-shadow: 0 4px 15px rgba(59,130,246,.35);
+    }
+
+    .btn-details:hover {
+        color: white;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(59,130,246,.55);
+    }
+
+    .btn-delete {
+        background: linear-gradient(135deg,#ef4444,#dc2626);
+        color: white;
+        box-shadow: 0 4px 15px rgba(239,68,68,.35);
+    }
+
+    .btn-delete:hover {
+        color: white;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(239,68,68,.55);
+    }
+
+    .btn-edit:active,
+    .btn-details:active,
+    .btn-delete:active {
+        transform: scale(.96);
+    }
+</style>
+
+<h2 class="page-title">📚 Livros</h2>
 
 <form method="get" asp-action="Index" class="mb-3">
-    <div class="input-group">
+    <div class="input-group search-box">
 
-        <input type="text"
-               name="busca"
-               value="@ViewBag.Busca"
-               class="form-control"
-               placeholder="Buscar por título, autor ou categoria..." />
 
-        <button type="submit" class="btn btn-primary">
-            <i class="bi bi-search"></i> Buscar
-        </button>
+    <input type="text"
+           name="busca"
+           value="@ViewBag.Busca"
+           class="form-control"
+           placeholder="Buscar por título, autor ou categoria..." />
 
-        <a asp-action="Disponiveis"
-               class="btn btn-success">
-            <i class="bi bi-book"></i> Disponíveis
-        </a>
+    <button type="submit" class="btn btn-primary">
+        <i class="bi bi-search"></i> Buscar
+    </button>
 
-        <a asp-action="Create"
-               class="btn btn-dark">
-            <i class="bi bi-plus-circle"></i> Novo Livro
-        </a>
+    <a asp-action="Disponiveis" class="btn btn-success">
+        <i class="bi bi-book"></i> Disponíveis
+    </a>
 
-    </div>
+    <a asp-action="Create" class="btn btn-dark">
+        <i class="bi bi-plus-circle"></i> Novo Livro
+    </a>
+
+</div>
+
 </form>
 
-<table class="table table-striped table-hover align-middle">
-    <thead class="table-dark">
+<div class="table-container">
+    <table class="table custom-table align-middle mb-0">
+
+    <thead>
         <tr>
             <th>Livro</th>
             <th>Autor</th>
@@ -41,7 +185,7 @@
             <th>Ano</th>
             <th>Estoque</th>
             <th>Faixa Etária</th>
-            <th width="250">Ações</th>
+            <th width="320">Ações</th>
         </tr>
     </thead>
 
@@ -50,7 +194,7 @@
         {
             <tr>
 
-                <td>@item.NomeLivro</td>
+                <td><strong>@item.NomeLivro</strong></td>
 
                 <td>@item.Autor</td>
 
@@ -80,35 +224,42 @@
                 </td>
 
                 <td>
+                    <div class="action-buttons">
 
-                    <a asp-action="Edit"
+                        <a asp-action="Edit"
                            asp-route-id="@item.Id"
-                           class="btn btn-warning btn-sm">
-                        <i class="bi bi-pencil"></i> Editar
-                    </a>
+                           class="btn-edit">
+                            <i class="bi bi-pencil-square"></i>
+                            Editar
+                        </a>
 
-                    <a asp-action="Details"
+                        <a asp-action="Details"
                            asp-route-id="@item.Id"
-                           class="btn btn-info btn-sm">
-                        <i class="bi bi-eye"></i> Detalhes
-                    </a>
+                           class="btn-details">
+                            <i class="bi bi-eye-fill"></i>
+                            Detalhes
+                        </a>
 
-                    <a asp-action="Delete"
+                        <a asp-action="Delete"
                            asp-route-id="@item.Id"
-                           class="btn btn-danger btn-sm">
-                        <i class="bi bi-trash"></i> Excluir
-                    </a>
+                           class="btn-delete">
+                            <i class="bi bi-trash-fill"></i>
+                            Excluir
+                        </a>
 
+                    </div>
                 </td>
 
             </tr>
         }
     </tbody>
+
 </table>
 
+
+</div>
+
 @if (!Model.Any())
-{
-    <div class="alert alert-warning">
-        Nenhum livro encontrado.
-    </div>
+{ <div class="alert alert-warning mt-3">
+Nenhum livro encontrado. </div>
 }

@@ -1,78 +1,110 @@
 ﻿@model BibliotecaV1.Models.Usuario
 
 @{
-    ViewData["Title"] = "Cadastrar Usuário";
+ViewData["Title"] = "Cadastrar Usuário";
 }
 
-<div class="container mt-4">
-    <div class="card shadow">
-        <div class="card-header bg-primary text-white">
-            <h3>Cadastrar Usuário</h3>
-        </div>
+<style> .form-container { background: #161b22; border: 1px solid #30363d; border-radius: 16px; padding: 32px; max-width: 700px; margin: 0 auto; } .page-title { color: #f0f6fc; font-size: 28px; font-weight: 600; margin-bottom: 25px; } .form-label { color: #c9d1d9; font-weight: 500; margin-bottom: 8px; } .form-control { background: #0d1117; border: 1px solid #30363d; color: #e6edf3; border-radius: 10px; padding: 12px; } .form-control:focus { background: #0d1117; color: #fff; border-color: #484f58; box-shadow: none; } .form-check-input { background-color: #0d1117; border: 1px solid #30363d; } .form-check-input:checked { background-color: #238636; border-color: #238636; } .form-check-label { color: #c9d1d9; } .btn-save { background: #21262d; color: #f0f6fc; border: 1px solid #30363d; padding: 12px 18px; border-radius: 10px; font-weight: 500; text-decoration: none; } .btn-save:hover { background: #30363d; color: #fff; } .btn-back { background: transparent; color: #9ca3af; border: 1px solid #30363d; padding: 12px 18px; border-radius: 10px; text-decoration: none; margin-left: 10px; } .btn-back:hover { background: #21262d; color: #fff; } .text-danger { color: #f85149 !important; } </style> <div class="form-container">
+<h2 class="page-title">
+    Cadastrar Usuário
+</h2>
 
-        <div class="card-body">
+<form asp-action="Create">
 
-            <form asp-action="Create">
-
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-                <div class="mb-3">
-                    <label asp-for="NomeCompleto" class="form-label"></label>
-                    <input asp-for="NomeCompleto" class="form-control" />
-                    <span asp-validation-for="NomeCompleto" class="text-danger"></span>
-                </div>
-
-                <div class="mb-3">
-                    <label asp-for="DataNascimento" class="form-label"></label>
-                    <input asp-for="DataNascimento"
-                           type="date"
-                           class="form-control" />
-                    <span asp-validation-for="DataNascimento" class="text-danger"></span>
-                </div>
-
-                <div class="mb-3">
-                    <label asp-for="Email" class="form-label"></label>
-                    <input asp-for="Email"
-                           type="email"
-                           class="form-control" />
-                    <span asp-validation-for="Email" class="text-danger"></span>
-                </div>
-
-                <div class="mb-3">
-                    <label asp-for="Senha" class="form-label"></label>
-                    <input asp-for="Senha"
-                           type="password"
-                           class="form-control" />
-                    <span asp-validation-for="Senha" class="text-danger"></span>
-                </div>
-
-                <div class="form-check mb-3">
-                    <input asp-for="Ativo"
-                           class="form-check-input" />
-
-                    <label asp-for="Ativo"
-                           class="form-check-label">
-                        Usuário Ativo
-                    </label>
-                </div>
-
-                <button type="submit" class="btn btn-success">
-                    Salvar
-                </button>
-
-                <a asp-action="Index"
-                       class="btn btn-secondary">
-                    Voltar
-                </a>
-
-            </form>
-
-        </div>
+    <div asp-validation-summary="ModelOnly"
+         class="text-danger mb-3">
     </div>
+
+    <div class="mb-3">
+
+        <label asp-for="NomeCompleto"
+               class="form-label">
+        </label>
+
+        <input asp-for="NomeCompleto"
+               class="form-control" />
+
+        <span asp-validation-for="NomeCompleto"
+              class="text-danger">
+        </span>
+
+    </div>
+
+    <div class="mb-3">
+
+        <label asp-for="DataNascimento"
+               class="form-label">
+        </label>
+
+        <input asp-for="DataNascimento"
+               type="date"
+               class="form-control" />
+
+        <span asp-validation-for="DataNascimento"
+              class="text-danger">
+        </span>
+
+    </div>
+
+    <div class="mb-3">
+
+        <label asp-for="Email"
+               class="form-label">
+        </label>
+
+        <input asp-for="Email"
+               type="email"
+               class="form-control" />
+
+        <span asp-validation-for="Email"
+              class="text-danger">
+        </span>
+
+    </div>
+
+    <div class="mb-4">
+
+        <label asp-for="Senha"
+               class="form-label">
+        </label>
+
+        <input asp-for="Senha"
+               type="password"
+               class="form-control" />
+
+        <span asp-validation-for="Senha"
+              class="text-danger">
+        </span>
+
+    </div>
+
+    <div class="form-check mb-4">
+
+        <input asp-for="Ativo"
+               class="form-check-input" />
+
+        <label asp-for="Ativo"
+               class="form-check-label">
+            Usuário Ativo
+        </label>
+
+    </div>
+
+    <button type="submit"
+            class="btn-save">
+        Salvar Usuário
+    </button>
+
+    <a asp-action="Index"
+       class="btn-back">
+        Voltar
+    </a>
+
+</form>
 </div>
 
 @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+@{
+await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
 }

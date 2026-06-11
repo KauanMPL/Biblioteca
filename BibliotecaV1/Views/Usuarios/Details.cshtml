@@ -1,48 +1,67 @@
 ﻿@model BibliotecaV1.Models.Usuario
 
 @{
-    ViewData["Title"] = "Details";
+ViewData["Title"] = "Detalhes do Usuário";
 }
 
-<h1>Details</h1>
+<style> .content-card { background: #161b22; border: 1px solid #30363d; border-radius: 16px; padding: 32px; max-width: 800px; margin: 0 auto; } .page-title { color: #f0f6fc; font-size: 28px; font-weight: 600; margin-bottom: 25px; } .info-box { background: #0d1117; border: 1px solid #30363d; border-radius: 12px; overflow: hidden; } .info-item { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; border-bottom: 1px solid #30363d; } .info-item:last-child { border-bottom: none; } .label { color: #8b949e; font-weight: 500; } .value { color: #f0f6fc; font-weight: 500; } .status-active { background: rgba(35,134,54,.2); color: #3fb950; padding: 6px 12px; border-radius: 20px; font-size: 13px; font-weight: 600; } .status-inactive { background: rgba(248,81,73,.2); color: #f85149; padding: 6px 12px; border-radius: 20px; font-size: 13px; font-weight: 600; } .btn-edit { background: #21262d; color: #f0f6fc; border: 1px solid #30363d; padding: 12px 18px; border-radius: 10px; text-decoration: none; font-weight: 500; } .btn-edit:hover { background: #30363d; color: #fff; } .btn-back { background: transparent; color: #9ca3af; border: 1px solid #30363d; padding: 12px 18px; border-radius: 10px; text-decoration: none; margin-left: 10px; } .btn-back:hover { background: #21262d; color: #fff; } </style> <div class="content-card">
+<h2 class="page-title">
+    Detalhes do Usuário
+</h2>
 
-<div>
-    <h4>Usuario</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NomeCompleto)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NomeCompleto)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DataNascimento)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DataNascimento)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Senha)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Senha)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Ativo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Ativo)
-        </dd>
-    </dl>
+<div class="info-box">
+
+    <div class="info-item">
+        <span class="label">Nome Completo</span>
+        <span class="value">@Model.NomeCompleto</span>
+    </div>
+
+    <div class="info-item">
+        <span class="label">Data de Nascimento</span>
+        <span class="value">@Model.DataNascimento.ToString("dd/MM/yyyy")</span>
+    </div>
+
+    <div class="info-item">
+        <span class="label">Email</span>
+        <span class="value">@Model.Email</span>
+    </div>
+
+    <div class="info-item">
+        <span class="label">Senha</span>
+        <span class="value">••••••••</span>
+    </div>
+
+    <div class="info-item">
+        <span class="label">Status</span>
+
+        @if (Model.Ativo)
+        {
+            <span class="status-active">
+                Ativo
+            </span>
+        }
+        else
+        {
+            <span class="status-inactive">
+                Inativo
+            </span>
+        }
+    </div>
+
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+
+<div class="mt-4">
+
+    <a asp-action="Edit"
+       asp-route-id="@Model.Id"
+       class="btn-edit">
+        Editar
+    </a>
+
+    <a asp-action="Index"
+       class="btn-back">
+        Voltar
+    </a>
+
+</div>
 </div>

@@ -1,54 +1,56 @@
 ﻿@model BibliotecaV1.Models.Livro
 
 @{
-    ViewData["Title"] = "Details";
+ViewData["Title"] = "Detalhes do Livro";
 }
 
-<h1>Details</h1>
+<style> .form-container { background: #161b22; border: 1px solid #30363d; border-radius: 16px; padding: 32px; max-width: 800px; } .info-box { background: #0d1117; border: 1px solid #30363d; border-radius: 12px; overflow: hidden; margin-bottom: 25px; } .info-item { display: flex; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid #30363d; } .info-item:last-child { border-bottom: none; } .info-label { color: #8b949e; font-weight: 500; } .info-value { color: #f0f6fc; font-weight: 500; } .btn-edit { background: #21262d; color: #f0f6fc; border: 1px solid #30363d; padding: 12px 18px; border-radius: 10px; text-decoration: none; margin-right: 10px; } .btn-edit:hover { background: #30363d; color: #fff; } .btn-back { background: transparent; color: #9ca3af; border: 1px solid #30363d; padding: 12px 18px; border-radius: 10px; text-decoration: none; } .btn-back:hover { background: #21262d; color: #fff; } </style> <div class="form-container">
+<h2 class="mb-4 text-light">
+    Detalhes do Livro
+</h2>
 
-<div>
-    <h4>Livro</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NomeLivro)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NomeLivro)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Autor)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Autor)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.QuantidadeEstoque)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.QuantidadeEstoque)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FaixaEtariaPermitida)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FaixaEtariaPermitida)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Categoria)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Categoria)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AnoPublicacao)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AnoPublicacao)
-        </dd>
-    </dl>
+<div class="info-box">
+
+    <div class="info-item">
+        <span class="info-label">Nome do Livro</span>
+        <span class="info-value">@Model.NomeLivro</span>
+    </div>
+
+    <div class="info-item">
+        <span class="info-label">Autor</span>
+        <span class="info-value">@Model.Autor</span>
+    </div>
+
+    <div class="info-item">
+        <span class="info-label">Quantidade em Estoque</span>
+        <span class="info-value">@Model.QuantidadeEstoque</span>
+    </div>
+
+    <div class="info-item">
+        <span class="info-label">Faixa Etária Permitida</span>
+        <span class="info-value">@Model.FaixaEtariaPermitida anos</span>
+    </div>
+
+    <div class="info-item">
+        <span class="info-label">Categoria</span>
+        <span class="info-value">@Model.Categoria</span>
+    </div>
+
+    <div class="info-item">
+        <span class="info-label">Ano de Publicação</span>
+        <span class="info-value">@Model.AnoPublicacao</span>
+    </div>
+
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+
+<a asp-action="Edit"
+   asp-route-id="@Model.Id"
+   class="btn-edit">
+    Editar
+</a>
+
+<a asp-action="Index"
+   class="btn-back">
+    Voltar
+</a>
 </div>

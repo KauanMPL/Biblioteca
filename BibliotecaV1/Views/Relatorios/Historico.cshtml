@@ -30,12 +30,123 @@
     );
 }
 
-<h2 class="mb-4">📊 Dashboard da Biblioteca</h2>
+<style>
+
+    body {
+        background: #0d1117;
+    }
+
+    .page-title {
+        color: #fff;
+        font-weight: 700;
+        margin-bottom: 25px;
+    }
+
+    .stat-card {
+        background: #161b22;
+        border: 1px solid #30363d;
+        border-radius: 20px;
+        color: white;
+        box-shadow: 0 10px 35px rgba(0,0,0,.35);
+        transition: .3s;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .stat-card h5 {
+        color: #8b949e;
+    }
+
+    .stat-card h2 {
+        font-weight: bold;
+    }
+
+    .card-livros {
+        border-left: 5px solid #3b82f6;
+    }
+
+    .card-usuarios {
+        border-left: 5px solid #22c55e;
+    }
+
+    .card-emprestimos {
+        border-left: 5px solid #f59e0b;
+    }
+
+    .card-multas {
+        border-left: 5px solid #ef4444;
+    }
+
+    .chart-card {
+        background: #161b22;
+        border-radius: 20px;
+        border: 1px solid #30363d;
+        overflow: hidden;
+        box-shadow: 0 10px 35px rgba(0,0,0,.35);
+    }
+
+    .chart-header {
+        padding: 16px;
+        color: #60a5fa;
+        font-weight: 600;
+        border-bottom: 1px solid #30363d;
+    }
+
+    .chart-body {
+        padding: 20px;
+    }
+
+    .table-container {
+        background: #161b22;
+        border-radius: 20px;
+        overflow: hidden;
+        border: 1px solid #30363d;
+        box-shadow: 0 10px 35px rgba(0,0,0,.35);
+        margin-top: 25px;
+    }
+
+    .custom-table {
+        margin: 0;
+        color: #e6edf3;
+    }
+
+    .custom-table thead {
+        background: linear-gradient(135deg,#1f2937,#111827);
+    }
+
+    .custom-table thead th {
+        color: #60a5fa;
+        border: none;
+        padding: 18px;
+    }
+
+    .custom-table tbody tr {
+        background: #0d1117;
+        transition: .25s;
+    }
+
+    .custom-table tbody tr:hover {
+        background: #1c2128;
+        transform: scale(1.01);
+    }
+
+    .custom-table td {
+        border-color: #30363d;
+        padding: 16px;
+    }
+
+</style>
+
+<h2 class="page-title">
+    📊 Dashboard da Biblioteca
+</h2>
 
 <div class="row mb-4">
 
     <div class="col-md-3">
-        <div class="card bg-primary text-white">
+        <div class="card stat-card card-livros">
             <div class="card-body">
                 <h5>Total de Livros</h5>
                 <h2>@ViewBag.TotalLivros</h2>
@@ -44,7 +155,7 @@
     </div>
 
     <div class="col-md-3">
-        <div class="card bg-success text-white">
+        <div class="card stat-card card-usuarios">
             <div class="card-body">
                 <h5>Usuários</h5>
                 <h2>@ViewBag.TotalUsuarios</h2>
@@ -53,7 +164,7 @@
     </div>
 
     <div class="col-md-3">
-        <div class="card bg-warning text-dark">
+        <div class="card stat-card card-emprestimos">
             <div class="card-body">
                 <h5>Empréstimos Ativos</h5>
                 <h2>@ViewBag.EmprestimosAtivos</h2>
@@ -62,7 +173,7 @@
     </div>
 
     <div class="col-md-3">
-        <div class="card bg-danger text-white">
+        <div class="card stat-card card-multas">
             <div class="card-body">
                 <h5>Multas</h5>
                 <h2>R$ @ViewBag.TotalMultas</h2>
@@ -75,80 +186,130 @@
 <div class="row">
 
     <div class="col-md-6">
-        <div class="card shadow">
-            <div class="card-header bg-primary text-white">
-                Livros por Categoria
+
+        <div class="chart-card">
+
+            <div class="chart-header">
+                📚 Livros por Categoria
             </div>
 
-            <div class="card-body">
+            <div class="chart-body">
                 <canvas id="graficoPizza"></canvas>
             </div>
+
         </div>
+
     </div>
 
     <div class="col-md-6">
-        <div class="card shadow">
-            <div class="card-header bg-success text-white">
-                Empréstimos por Mês
+
+        <div class="chart-card">
+
+            <div class="chart-header">
+                📈 Empréstimos por Mês
             </div>
 
-            <div class="card-body">
+            <div class="chart-body">
                 <canvas id="graficoLinha"></canvas>
             </div>
+
         </div>
+
     </div>
 
 </div>
 
 <hr class="my-4" />
 
-<h3>📚 Histórico de Empréstimos</h3>
+<h3 class="page-title">
+     Histórico de Empréstimos
+</h3>
 
-<table class="table table-striped table-hover">
+<div class="table-container">
 
-    <thead class="table-dark">
-        <tr>
-            <th>Usuário</th>
-            <th>Livro</th>
-            <th>Empréstimo</th>
-            <th>Devolução</th>
-            <th>Multa</th>
-            <th>Status</th>
-        </tr>
-    </thead>
+    <table class="table custom-table align-middle mb-0">
 
-    <tbody>
-
-        @foreach (var item in Model)
-        {
+        <thead>
             <tr>
-
-                <td>@item.Usuario</td>
-
-                <td>@item.Livro</td>
-
-                <td>
-                    @item.DataEmprestimo.ToString("dd/MM/yyyy")
-                </td>
-
-                <td>
-                    @(item.DataDevolucao?.ToString("dd/MM/yyyy") ?? "-")
-                </td>
-
-                <td>
-                    @item.Multa.ToString("C")
-                </td>
-
-                <td>
-                    @item.Status
-                </td>
-
+                <th>Usuário</th>
+                <th>Livro</th>
+                <th>Empréstimo</th>
+                <th>Devolução</th>
+                <th>Multa</th>
+                <th>Status</th>
             </tr>
-        }
+        </thead>
 
-    </tbody>
+        <tbody>
 
-</table>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>
+                        <strong>@item.Usuario</strong>
+                    </td>
+
+                    <td>
+                        @item.Livro
+                    </td>
+
+                    <td>
+                        @item.DataEmprestimo.ToString("dd/MM/yyyy")
+                    </td>
+
+                    <td>
+                        @(item.DataDevolucao?.ToString("dd/MM/yyyy") ?? "-")
+                    </td>
+
+                    <td>
+
+                        @if (item.Multa > 0)
+                        {
+                            <span class="badge bg-danger">
+                                @item.Multa.ToString("C")
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-success">
+                                R$ 0,00
+                            </span>
+                        }
+
+                    </td>
+
+                    <td>
+
+                        @if (item.Status == "Devolvido")
+                        {
+                            <span class="badge bg-success">
+                                Devolvido
+                            </span>
+                        }
+                        else if (item.Status == "Emprestado")
+                        {
+                            <span class="badge bg-primary">
+                                Emprestado
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger">
+                                Atrasado
+                            </span>
+                        }
+
+                    </td>
+
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+
+</div>
 
 @section Scripts {
 
@@ -161,16 +322,44 @@
 
         new Chart(document.getElementById('graficoPizza'), {
 
-        type: 'pie',
+            type: 'doughnut',
 
-        data: {
+            data: {
+                labels: categorias,
 
-        labels: categorias,
+                datasets: [{
+                    data: quantidades,
 
-        datasets: [{
-        data: quantidades
-        }]
-        }
+                    backgroundColor: [
+                        '#3b82f6',
+                        '#22c55e',
+                        '#f59e0b',
+                        '#ef4444',
+                        '#8b5cf6',
+                        '#06b6d4',
+                        '#ec4899',
+                        '#84cc16'
+                    ],
+
+                    borderWidth: 0
+                }]
+            },
+
+            options: {
+
+                plugins: {
+
+                    legend: {
+                        position: 'bottom',
+
+                        labels: {
+                            color: '#e6edf3',
+                            padding: 20
+                        }
+                    }
+                }
+            }
+
         });
 
 
@@ -179,19 +368,77 @@
 
         new Chart(document.getElementById('graficoLinha'), {
 
-        type: 'line',
+            type: 'line',
 
-        data: {
+            data: {
 
-        labels: meses,
+                labels: meses,
 
-        datasets: [{
-        label: 'Empréstimos',
-        data: totais,
-        fill: false,
-        tension: 0.4
-        }]
-        }
+                datasets: [{
+
+                    label: 'Empréstimos',
+
+                    data: totais,
+
+                    borderColor: '#60a5fa',
+
+                    backgroundColor: 'rgba(96,165,250,0.15)',
+
+                    fill: true,
+
+                    tension: 0.4,
+
+                    pointBackgroundColor: '#60a5fa',
+
+                    pointBorderColor: '#60a5fa',
+
+                    pointRadius: 5
+
+                }]
+            },
+
+            options: {
+
+                responsive: true,
+
+                plugins: {
+
+                    legend: {
+
+                        labels: {
+                            color: '#e6edf3'
+                        }
+                    }
+                },
+
+                scales: {
+
+                    x: {
+
+                        ticks: {
+                            color: '#e6edf3'
+                        },
+
+                        grid: {
+                            color: '#30363d'
+                        }
+                    },
+
+                    y: {
+
+                        beginAtZero: true,
+
+                        ticks: {
+                            color: '#e6edf3'
+                        },
+
+                        grid: {
+                            color: '#30363d'
+                        }
+                    }
+                }
+            }
+
         });
 
     </script>

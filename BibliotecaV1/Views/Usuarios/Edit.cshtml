@@ -1,54 +1,112 @@
 ﻿@model BibliotecaV1.Models.Usuario
 
 @{
-    ViewData["Title"] = "Edit";
+ViewData["Title"] = "Editar Usuário";
 }
 
-<h1>Edit</h1>
+<style> .form-container { background: #161b22; border: 1px solid #30363d; border-radius: 16px; padding: 32px; max-width: 700px; margin: 0 auto; } .page-title { color: #f0f6fc; font-size: 28px; font-weight: 600; margin-bottom: 25px; } .form-label { color: #c9d1d9; font-weight: 500; margin-bottom: 8px; } .form-control { background: #0d1117; border: 1px solid #30363d; color: #e6edf3; border-radius: 10px; padding: 12px; } .form-control:focus { background: #0d1117; color: #fff; border-color: #484f58; box-shadow: none; } .form-check-input { background-color: #0d1117; border: 1px solid #30363d; } .form-check-input:checked { background-color: #238636; border-color: #238636; } .form-check-label { color: #c9d1d9; } .btn-save { background: #21262d; color: #f0f6fc; border: 1px solid #30363d; padding: 12px 18px; border-radius: 10px; font-weight: 500; text-decoration: none; } .btn-save:hover { background: #30363d; color: #fff; } .btn-back { background: transparent; color: #9ca3af; border: 1px solid #30363d; padding: 12px 18px; border-radius: 10px; text-decoration: none; margin-left: 10px; } .btn-back:hover { background: #21262d; color: #fff; } .text-danger { color: #f85149 !important; } </style> <div class="form-container">
+<h2 class="page-title">
+    Editar Usuário
+</h2>
 
-<h4>Usuario</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="NomeCompleto" class="control-label"></label>
-                <input asp-for="NomeCompleto" class="form-control" />
-                <span asp-validation-for="NomeCompleto" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DataNascimento" class="control-label"></label>
-                <input asp-for="DataNascimento" class="form-control" />
-                <span asp-validation-for="DataNascimento" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Senha" class="control-label"></label>
-                <input asp-for="Senha" class="form-control" />
-                <span asp-validation-for="Senha" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Ativo" /> @Html.DisplayNameFor(model => model.Ativo)
-                </label>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+<form asp-action="Edit">
+
+    <div asp-validation-summary="ModelOnly"
+         class="text-danger mb-3">
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+
+        <label asp-for="NomeCompleto"
+               class="form-label">
+        </label>
+
+        <input asp-for="NomeCompleto"
+               class="form-control" />
+
+        <span asp-validation-for="NomeCompleto"
+              class="text-danger">
+        </span>
+
+    </div>
+
+    <div class="mb-3">
+
+        <label asp-for="DataNascimento"
+               class="form-label">
+        </label>
+
+        <input asp-for="DataNascimento"
+               type="date"
+               class="form-control" />
+
+        <span asp-validation-for="DataNascimento"
+              class="text-danger">
+        </span>
+
+    </div>
+
+    <div class="mb-3">
+
+        <label asp-for="Email"
+               class="form-label">
+        </label>
+
+        <input asp-for="Email"
+               type="email"
+               class="form-control" />
+
+        <span asp-validation-for="Email"
+              class="text-danger">
+        </span>
+
+    </div>
+
+    <div class="mb-3">
+
+        <label asp-for="Senha"
+               class="form-label">
+        </label>
+
+        <input asp-for="Senha"
+               type="password"
+               class="form-control" />
+
+        <span asp-validation-for="Senha"
+              class="text-danger">
+        </span>
+
+    </div>
+
+    <div class="form-check mb-4">
+
+        <input asp-for="Ativo"
+               class="form-check-input" />
+
+        <label asp-for="Ativo"
+               class="form-check-label">
+            Usuário Ativo
+        </label>
+
+    </div>
+
+    <button type="submit"
+            class="btn-save">
+        Salvar Alterações
+    </button>
+
+    <a asp-action="Index"
+       class="btn-back">
+        Voltar
+    </a>
+
+</form>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+@{
+await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
 }

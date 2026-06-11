@@ -5378,11 +5378,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Aluno\\Desktop\\BIBLI\\Biblioteca\\BibliotecaV1\\BibliotecaV1.csproj",
+      "projectUniqueName": "C:\\Users\\Aluno\\Desktop\\Biblioteca\\BibliotecaV1\\BibliotecaV1.csproj",
       "projectName": "BibliotecaV1",
-      "projectPath": "C:\\Users\\Aluno\\Desktop\\BIBLI\\Biblioteca\\BibliotecaV1\\BibliotecaV1.csproj",
+      "projectPath": "C:\\Users\\Aluno\\Desktop\\Biblioteca\\BibliotecaV1\\BibliotecaV1.csproj",
       "packagesPath": "C:\\Users\\Aluno\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Aluno\\Desktop\\BIBLI\\Biblioteca\\BibliotecaV1\\obj\\",
+      "outputPath": "C:\\Users\\Aluno\\Desktop\\Biblioteca\\BibliotecaV1\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

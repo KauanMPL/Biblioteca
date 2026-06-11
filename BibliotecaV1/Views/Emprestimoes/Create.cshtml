@@ -1,78 +1,146 @@
 ﻿@model BibliotecaV1.Models.Emprestimo
 
 @{
-    ViewData["Title"] = "Novo Empréstimo";
+ViewData["Title"] = "Novo Empréstimo";
 }
 
-<h2>📚 Novo Empréstimo</h2>
+<style>
+    .form-container {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 16px;
+    padding: 32px;
+    max-width: 700px;
+}
 
-<hr />
+.btn-save {
+    background: #21262d;
+    color: #f0f6fc;
+    border: 1px solid #30363d;
+    padding: 12px 18px;
+    border-radius: 10px;
+    font-weight: 500;
+}
 
-<div class="row">
-    <div class="col-md-6">
+.btn-save:hover {
+    background: #30363d;
+    color: #fff;
+}
 
-        <form asp-action="Create">
+.btn-back {
+    background: transparent;
+    color: #9ca3af;
+    border: 1px solid #30363d;
+    padding: 12px 18px;
+    border-radius: 10px;
+    text-decoration: none;
+}
 
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+.btn-back:hover {
+    background: #21262d;
+    color: #fff;
+}
 
-            <div class="mb-3">
-                <label asp-for="UsuarioId" class="form-label">
-                    Usuário
-                </label>
+.form-control,
+.form-select {
+    background: #0d1117;
+    border: 1px solid #30363d;
+    color: #e6edf3;
+    border-radius: 10px;
+}
 
-                <select asp-for="UsuarioId"
-                        class="form-select"
-                        asp-items="ViewBag.UsuarioId">
-                    <option value="">Selecione um usuário</option>
-                </select>
+.form-control:focus,
+.form-select:focus {
+    background: #0d1117;
+    color: #fff;
+    border-color: #484f58;
+    box-shadow: none;
+}
+</style>
+<form asp-action="Create">
 
-                <span asp-validation-for="UsuarioId" class="text-danger"></span>
-            </div>
+    <div asp-validation-summary="ModelOnly"
+         class="text-danger mb-3">
+    </div>
 
-            <div class="mb-3">
-                <label asp-for="LivroId" class="form-label">
-                    Livro
-                </label>
+    <div class="mb-3">
 
-                <select asp-for="LivroId"
-                        class="form-select"
-                        asp-items="ViewBag.LivroId">
-                    <option value="">Selecione um livro</option>
-                </select>
+        <label asp-for="UsuarioId"
+               class="form-label">
+            Usuário
+        </label>
 
-                <span asp-validation-for="LivroId" class="text-danger"></span>
-            </div>
+        <select asp-for="UsuarioId"
+                class="form-select"
+                asp-items="ViewBag.UsuarioId">
 
-            <div class="mb-3">
-                <label asp-for="DataPrevistaDevolucao" class="form-label">
-                    Data Prevista de Devolução
-                </label>
+            <option value="">
+                Selecione um usuário
+            </option>
 
-                <input asp-for="DataPrevistaDevolucao"
-                       type="date"
-                       class="form-control" />
+        </select>
 
-                <span asp-validation-for="DataPrevistaDevolucao"
-                      class="text-danger"></span>
-            </div>
-
-            <button type="submit"
-                    class="btn btn-success">
-                Registrar Empréstimo
-            </button>
-
-            <a asp-action="Index"
-                   class="btn btn-secondary">
-                Voltar
-            </a>
-
-        </form>
+        <span asp-validation-for="UsuarioId"
+              class="text-danger">
+        </span>
 
     </div>
+
+    <div class="mb-3">
+
+        <label asp-for="LivroId"
+               class="form-label">
+            Livro
+        </label>
+
+        <select asp-for="LivroId"
+                class="form-select"
+                asp-items="ViewBag.LivroId">
+
+            <option value="">
+                Selecione um livro
+            </option>
+
+        </select>
+
+        <span asp-validation-for="LivroId"
+              class="text-danger">
+        </span>
+
+    </div>
+
+    <div class="mb-4">
+
+        <label asp-for="DataPrevistaDevolucao"
+               class="form-label">
+            Data Prevista de Devolução
+        </label>
+
+        <input asp-for="DataPrevistaDevolucao"
+               type="date"
+               class="form-control" />
+
+        <span asp-validation-for="DataPrevistaDevolucao"
+              class="text-danger">
+        </span>
+
+    </div>
+
+    <button type="submit"
+            class="btn-save">
+        Registrar Empréstimo
+    </button>
+
+    <a asp-action="Index"
+       class="btn-back">
+        Voltar
+    </a>
+
+</form>
 </div>
 
 @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+@{
+await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
 }

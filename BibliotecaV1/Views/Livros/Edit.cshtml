@@ -1,59 +1,197 @@
 ﻿@model BibliotecaV1.Models.Livro
 
 @{
-    ViewData["Title"] = "Edit";
+ViewData["Title"] = "Editar Livro";
 }
 
-<h1>Edit</h1>
+<style>
 
-<h4>Livro</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="NomeLivro" class="control-label"></label>
-                <input asp-for="NomeLivro" class="form-control" />
-                <span asp-validation-for="NomeLivro" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Autor" class="control-label"></label>
-                <input asp-for="Autor" class="form-control" />
-                <span asp-validation-for="Autor" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="QuantidadeEstoque" class="control-label"></label>
-                <input asp-for="QuantidadeEstoque" class="form-control" />
-                <span asp-validation-for="QuantidadeEstoque" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FaixaEtariaPermitida" class="control-label"></label>
-                <input asp-for="FaixaEtariaPermitida" class="form-control" />
-                <span asp-validation-for="FaixaEtariaPermitida" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Categoria" class="control-label"></label>
-                <input asp-for="Categoria" class="form-control" />
-                <span asp-validation-for="Categoria" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AnoPublicacao" class="control-label"></label>
-                <input asp-for="AnoPublicacao" class="form-control" />
-                <span asp-validation-for="AnoPublicacao" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+    .form-container {
+        background: #161b22;
+        border: 1px solid #30363d;
+        border-radius: 16px;
+        padding: 32px;
+        max-width: 700px;
+    }
+
+    .form-control {
+        background: #0d1117;
+        border: 1px solid #30363d;
+        color: #e6edf3;
+        border-radius: 10px;
+    }
+
+    .form-control:focus {
+        background: #0d1117;
+        color: #fff;
+        border-color: #484f58;
+        box-shadow: none;
+    }
+
+    .form-label {
+        color: #c9d1d9;
+        font-weight: 500;
+        margin-bottom: 8px;
+    }
+
+    .btn-save {
+        background: #21262d;
+        color: #f0f6fc;
+        border: 1px solid #30363d;
+        padding: 12px 18px;
+        border-radius: 10px;
+        font-weight: 500;
+    }
+
+    .btn-save:hover {
+        background: #30363d;
+        color: #fff;
+    }
+
+    .btn-back {
+        background: transparent;
+        color: #9ca3af;
+        border: 1px solid #30363d;
+        padding: 12px 18px;
+        border-radius: 10px;
+        text-decoration: none;
+        margin-left: 10px;
+    }
+
+    .btn-back:hover {
+        background: #21262d;
+        color: #fff;
+    }
+
+</style>
+
+<div class="form-container">
+
+<h2 class="text-light mb-4">
+    Editar Livro
+</h2>
+
+<form asp-action="Edit">
+
+    <div asp-validation-summary="ModelOnly"
+         class="text-danger mb-3">
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+
+        <label asp-for="NomeLivro"
+               class="form-label">
+            Nome do Livro
+        </label>
+
+        <input asp-for="NomeLivro"
+               class="form-control" />
+
+        <span asp-validation-for="NomeLivro"
+              class="text-danger">
+        </span>
+
+    </div>
+
+    <div class="mb-3">
+
+        <label asp-for="Autor"
+               class="form-label">
+            Autor
+        </label>
+
+        <input asp-for="Autor"
+               class="form-control" />
+
+        <span asp-validation-for="Autor"
+              class="text-danger">
+        </span>
+
+    </div>
+
+    <div class="mb-3">
+
+        <label asp-for="QuantidadeEstoque"
+               class="form-label">
+            Quantidade em Estoque
+        </label>
+
+        <input asp-for="QuantidadeEstoque"
+               class="form-control" />
+
+        <span asp-validation-for="QuantidadeEstoque"
+              class="text-danger">
+        </span>
+
+    </div>
+
+    <div class="mb-3">
+
+        <label asp-for="FaixaEtariaPermitida"
+               class="form-label">
+            Faixa Etária Permitida
+        </label>
+
+        <input asp-for="FaixaEtariaPermitida"
+               class="form-control" />
+
+        <span asp-validation-for="FaixaEtariaPermitida"
+              class="text-danger">
+        </span>
+
+    </div>
+
+    <div class="mb-3">
+
+        <label asp-for="Categoria"
+               class="form-label">
+            Categoria
+        </label>
+
+        <input asp-for="Categoria"
+               class="form-control" />
+
+        <span asp-validation-for="Categoria"
+              class="text-danger">
+        </span>
+
+    </div>
+
+    <div class="mb-4">
+
+        <label asp-for="AnoPublicacao"
+               class="form-label">
+            Ano de Publicação
+        </label>
+
+        <input asp-for="AnoPublicacao"
+               class="form-control" />
+
+        <span asp-validation-for="AnoPublicacao"
+              class="text-danger">
+        </span>
+
+    </div>
+
+    <button type="submit"
+            class="btn-save">
+        Salvar Alterações
+    </button>
+
+    <a asp-action="Index"
+       class="btn-back">
+        Voltar
+    </a>
+
+</form>
+
+
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+@{
+await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
 }

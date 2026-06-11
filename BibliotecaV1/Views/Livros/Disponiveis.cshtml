@@ -1,12 +1,11 @@
 ﻿@model IEnumerable<BibliotecaV1.Models.Livro>
 
 @{
-    ViewData["Title"] = "Livros Disponíveis";
+ViewData["Title"] = "Livros Disponíveis";
 }
 
-<h2>📚 Livros Disponíveis</h2>
-
-<table class="table table-striped">
+<style> .table-container { background: #161b22; border-radius: 16px; overflow: hidden; border: 1px solid #30363d; margin-top: 20px; } .custom-table { margin: 0; color: #e6edf3; } .custom-table thead { background: #21262d; } .custom-table thead th { border: none; padding: 18px; color: #f0f6fc; font-weight: 600; } .custom-table tbody tr { background: #0d1117; transition: background .2s ease; } .custom-table tbody tr:hover { background: #161b22; } .custom-table td { border-color: #30363d; padding: 16px; vertical-align: middle; } .stock-badge { background: #238636; color: white; padding: 8px 12px; border-radius: 8px; font-weight: 600; } .page-title { color: #f0f6fc; margin-bottom: 20px; font-weight: 600; } </style> <h2 class="page-title"> Livros Disponíveis </h2> <div class="table-container">
+<table class="table custom-table mb-0">
 
     <thead>
         <tr>
@@ -22,17 +21,29 @@
         @foreach (var livro in Model)
         {
             <tr>
-                <td>@livro.NomeLivro</td>
-                <td>@livro.Autor</td>
-                <td>@livro.Categoria</td>
+
                 <td>
-                    <span class="badge bg-success">
+                    <strong>@livro.NomeLivro</strong>
+                </td>
+
+                <td>
+                    @livro.Autor
+                </td>
+
+                <td>
+                    @livro.Categoria
+                </td>
+
+                <td>
+                    <span class="stock-badge">
                         @livro.QuantidadeEstoque
                     </span>
                 </td>
+
             </tr>
         }
 
     </tbody>
 
 </table>
+</div>

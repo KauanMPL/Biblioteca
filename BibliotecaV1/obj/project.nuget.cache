@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "pc5uVf5OjDA=",
+  "dgSpecHash": "mR3hXp2GoQA=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Aluno\\Desktop\\BIBLI\\Biblioteca\\BibliotecaV1\\BibliotecaV1.csproj",
+  "projectFilePath": "C:\\Users\\Aluno\\Desktop\\Biblioteca\\BibliotecaV1\\BibliotecaV1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Aluno\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\Aluno\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
@@ -117,9 +117,9 @@
       "code": "NU1901",
       "level": "Warning",
       "message": "O pacote 'NuGet.Packaging' 6.12.1 tem uma baixa vulnerabilidade de gravidade conhecida, https://github.com/advisories/GHSA-g4vj-cjjj-v7hg",
-      "projectPath": "C:\\Users\\Aluno\\Desktop\\BIBLI\\Biblioteca\\BibliotecaV1\\BibliotecaV1.csproj",
+      "projectPath": "C:\\Users\\Aluno\\Desktop\\Biblioteca\\BibliotecaV1\\BibliotecaV1.csproj",
       "warningLevel": 1,
-      "filePath": "C:\\Users\\Aluno\\Desktop\\BIBLI\\Biblioteca\\BibliotecaV1\\BibliotecaV1.csproj",
+      "filePath": "C:\\Users\\Aluno\\Desktop\\Biblioteca\\BibliotecaV1\\BibliotecaV1.csproj",
       "libraryId": "NuGet.Packaging",
       "targetGraphs": [
         "net10.0"
@@ -129,9 +129,9 @@
       "code": "NU1901",
       "level": "Warning",
       "message": "O pacote 'NuGet.Protocol' 6.12.1 tem uma baixa vulnerabilidade de gravidade conhecida, https://github.com/advisories/GHSA-g4vj-cjjj-v7hg",
-      "projectPath": "C:\\Users\\Aluno\\Desktop\\BIBLI\\Biblioteca\\BibliotecaV1\\BibliotecaV1.csproj",
+      "projectPath": "C:\\Users\\Aluno\\Desktop\\Biblioteca\\BibliotecaV1\\BibliotecaV1.csproj",
       "warningLevel": 1,
-      "filePath": "C:\\Users\\Aluno\\Desktop\\BIBLI\\Biblioteca\\BibliotecaV1\\BibliotecaV1.csproj",
+      "filePath": "C:\\Users\\Aluno\\Desktop\\Biblioteca\\BibliotecaV1\\BibliotecaV1.csproj",
       "libraryId": "NuGet.Protocol",
       "targetGraphs": [
         "net10.0"

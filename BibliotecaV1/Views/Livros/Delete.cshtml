@@ -1,57 +1,65 @@
 ﻿@model BibliotecaV1.Models.Livro
 
 @{
-    ViewData["Title"] = "Delete";
+ViewData["Title"] = "Excluir Livro";
 }
 
-<h1>Delete</h1>
+<style> .form-container { background: #161b22; border: 1px solid #30363d; border-radius: 16px; padding: 32px; max-width: 800px; } .alert-delete { background: #2d1b1b; border: 1px solid #5a2d2d; color: #f0f6fc; border-radius: 10px; padding: 15px; margin-bottom: 25px; } .info-box { background: #0d1117; border: 1px solid #30363d; border-radius: 12px; overflow: hidden; margin-bottom: 25px; } .info-item { display: flex; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid #30363d; } .info-item:last-child { border-bottom: none; } .info-label { color: #8b949e; font-weight: 500; } .info-value { color: #f0f6fc; font-weight: 500; } .btn-delete { background: #da3633; color: white; border: none; padding: 12px 18px; border-radius: 10px; font-weight: 500; } .btn-delete:hover { background: #b62324; color: white; } .btn-back { background: transparent; color: #9ca3af; border: 1px solid #30363d; padding: 12px 18px; border-radius: 10px; text-decoration: none; margin-left: 10px; } .btn-back:hover { background: #21262d; color: #fff; } </style> <div class="form-container">
+<h2 class="mb-4 text-light">
+    Excluir Livro
+</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Livro</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NomeLivro)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NomeLivro)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Autor)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Autor)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.QuantidadeEstoque)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.QuantidadeEstoque)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FaixaEtariaPermitida)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FaixaEtariaPermitida)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Categoria)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Categoria)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AnoPublicacao)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AnoPublicacao)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+<div class="alert-delete">
+    Tem certeza que deseja excluir este livro?
+</div>
+
+<div class="info-box">
+
+    <div class="info-item">
+        <span class="info-label">Nome do Livro</span>
+        <span class="info-value">@Model.NomeLivro</span>
+    </div>
+
+    <div class="info-item">
+        <span class="info-label">Autor</span>
+        <span class="info-value">@Model.Autor</span>
+    </div>
+
+    <div class="info-item">
+        <span class="info-label">Quantidade em Estoque</span>
+        <span class="info-value">@Model.QuantidadeEstoque</span>
+    </div>
+
+    <div class="info-item">
+        <span class="info-label">Faixa Etária</span>
+        <span class="info-value">@Model.FaixaEtariaPermitida anos</span>
+    </div>
+
+    <div class="info-item">
+        <span class="info-label">Categoria</span>
+        <span class="info-value">@Model.Categoria</span>
+    </div>
+
+    <div class="info-item">
+        <span class="info-label">Ano de Publicação</span>
+        <span class="info-value">@Model.AnoPublicacao</span>
+    </div>
+
+</div>
+
+<form asp-action="Delete">
+
+    <input type="hidden" asp-for="Id" />
+
+    <button type="submit"
+            class="btn-delete">
+        Excluir Livro
+    </button>
+
+    <a asp-action="Index"
+       class="btn-back">
+        Voltar
+    </a>
+
+</form>
 </div>

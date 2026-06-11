@@ -1,64 +1,156 @@
 ﻿@model BibliotecaV1.Models.Emprestimo
 
 @{
-    ViewData["Title"] = "Edit";
+ViewData["Title"] = "Editar Empréstimo";
 }
 
-<h1>Edit</h1>
+<style> .page-title { color: #f0f6fc; font-weight: 700; margin-bottom: 25px; } .page-card { background: #161b22; border: 1px solid #30363d; border-radius: 16px; padding: 30px; max-width: 800px; } .form-label { color: #8b949e; font-weight: 500; margin-bottom: 8px; } .form-control, .form-select { background: #0d1117; border: 1px solid #30363d; color: #f0f6fc; border-radius: 10px; padding: 12px; } .form-control:focus, .form-select:focus { background: #0d1117; color: #ffffff; border-color: #484f58; box-shadow: none; } .form-select option { background: #0d1117; color: #ffffff; } .btn-save { background: #21262d; color: #f0f6fc; border: 1px solid #30363d; padding: 10px 18px; border-radius: 10px; font-weight: 500; } .btn-save:hover { background: #30363d; color: white; } .btn-back { background: transparent; color: #8b949e; border: 1px solid #30363d; padding: 10px 18px; border-radius: 10px; text-decoration: none; margin-left: 10px; font-weight: 500; } .btn-back:hover { background: #21262d; color: white; } .text-danger { font-size: .9rem; } </style> <div class="page-card">
+<h2 class="page-title">
+    Editar Empréstimo
+</h2>
 
-<h4>Emprestimo</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="DataEmprestimo" class="control-label"></label>
-                <input asp-for="DataEmprestimo" class="form-control" />
-                <span asp-validation-for="DataEmprestimo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UsuarioId" class="control-label"></label>
-                <select asp-for="UsuarioId" class="form-control" asp-items="ViewBag.UsuarioId"></select>
-                <span asp-validation-for="UsuarioId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LivroId" class="control-label"></label>
-                <select asp-for="LivroId" class="form-control" asp-items="ViewBag.LivroId"></select>
-                <span asp-validation-for="LivroId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DataPrevistaDevolucao" class="control-label"></label>
-                <input asp-for="DataPrevistaDevolucao" class="form-control" />
-                <span asp-validation-for="DataPrevistaDevolucao" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DataRealDevolucao" class="control-label"></label>
-                <input asp-for="DataRealDevolucao" class="form-control" />
-                <span asp-validation-for="DataRealDevolucao" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Multa" class="control-label"></label>
-                <input asp-for="Multa" class="form-control" />
-                <span asp-validation-for="Multa" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Status" class="control-label"></label>
-                <input asp-for="Status" class="form-control" />
-                <span asp-validation-for="Status" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+<form asp-action="Edit">
+
+    <div asp-validation-summary="ModelOnly"
+         class="text-danger mb-3">
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+
+        <label asp-for="DataEmprestimo"
+               class="form-label">
+            Data do Empréstimo
+        </label>
+
+        <input asp-for="DataEmprestimo"
+               type="date"
+               class="form-control" />
+
+        <span asp-validation-for="DataEmprestimo"
+              class="text-danger">
+        </span>
+
+    </div>
+
+    <div class="mb-3">
+
+        <label asp-for="UsuarioId"
+               class="form-label">
+            Usuário
+        </label>
+
+        <select asp-for="UsuarioId"
+                class="form-select"
+                asp-items="ViewBag.UsuarioId">
+        </select>
+
+        <span asp-validation-for="UsuarioId"
+              class="text-danger">
+        </span>
+
+    </div>
+
+    <div class="mb-3">
+
+        <label asp-for="LivroId"
+               class="form-label">
+            Livro
+        </label>
+
+        <select asp-for="LivroId"
+                class="form-select"
+                asp-items="ViewBag.LivroId">
+        </select>
+
+        <span asp-validation-for="LivroId"
+              class="text-danger">
+        </span>
+
+    </div>
+
+    <div class="mb-3">
+
+        <label asp-for="DataPrevistaDevolucao"
+               class="form-label">
+            Data Prevista de Devolução
+        </label>
+
+        <input asp-for="DataPrevistaDevolucao"
+               type="date"
+               class="form-control" />
+
+        <span asp-validation-for="DataPrevistaDevolucao"
+              class="text-danger">
+        </span>
+
+    </div>
+
+    <div class="mb-3">
+
+        <label asp-for="DataRealDevolucao"
+               class="form-label">
+            Data Real de Devolução
+        </label>
+
+        <input asp-for="DataRealDevolucao"
+               type="date"
+               class="form-control" />
+
+        <span asp-validation-for="DataRealDevolucao"
+              class="text-danger">
+        </span>
+
+    </div>
+
+    <div class="mb-3">
+
+        <label asp-for="Multa"
+               class="form-label">
+            Multa
+        </label>
+
+        <input asp-for="Multa"
+               class="form-control" />
+
+        <span asp-validation-for="Multa"
+              class="text-danger">
+        </span>
+
+    </div>
+
+    <div class="mb-4">
+
+        <label asp-for="Status"
+               class="form-label">
+            Status
+        </label>
+
+        <input asp-for="Status"
+               class="form-control" />
+
+        <span asp-validation-for="Status"
+              class="text-danger">
+        </span>
+
+    </div>
+
+    <button type="submit"
+            class="btn-save">
+        Salvar Alterações
+    </button>
+
+    <a asp-action="Index"
+       class="btn-back">
+        Voltar
+    </a>
+
+</form>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+@{
+await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
 }
